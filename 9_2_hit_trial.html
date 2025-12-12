@@ -1,0 +1,1336 @@
+<!-- THIS CODE IS PERFECT-Ready for Backend -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Learning Lounge – IELTS Coaching Excellence</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700&display=swap');
+
+  :root {
+    /* Updated Darker Blue Theme Colors - Adjusted for lighter backgrounds */
+    --blue-light: #e3f2fd; /* Even lighter blue for backgrounds like course cards and testimonials */
+    --blue-medium: #1976d2; /* Darker medium blue */
+    --blue-dark: #0d47a1; /* Darker dark blue */
+
+    --accent-color: #ffb400; /* Yellow accent remains */
+    --text-dark: #0a192f; /* Changed from dark green to a very dark blue for general text */
+    --text-light: #f0faf0;
+    --bg-light: #f9fdf9;
+    --shadow: rgba(25, 118, 210, 0.2); /* Shadow based on blue-medium */
+    --transition: 0.3s ease;
+
+    --dark-bg: #121312;
+    --dark-bg-alt: #1f1f1d;
+    --dark-text-light: #e1e3df;
+    --dark-text-muted: #8a8c87;
+
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background-color 0.5s, color 0.5s;
+    overflow-x: hidden; /* Prevent horizontal scroll from mobile menu */
+  }
+
+  body.dark {
+    background-color: var(--dark-bg);
+    color: var(--dark-text-light);
+  }
+
+  a {
+    color: var(--blue-medium);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  body.dark a {
+    color: var(--accent-color);
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--accent-color);
+    outline: none;
+    text-decoration: underline;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  header {
+    background-color: var(--blue-medium);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1300;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px var(--shadow);
+    color: var(--text-light);
+    transition: background-color 0.5s;
+  }
+
+  body.dark header {
+    background-color: var(--dark-bg-alt);
+    box-shadow: 0 2px 12px rgba(255 180 0 / 0.5);
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    user-select: none;
+    color: var(--text-light); /* Set default color for light mode */
+    transition: color 0.5s ease; /* Add transition for color change */
+  }
+  /* Dark mode color for logo */
+  body.dark .logo {
+    color: var(--accent-color);
+  }
+  /* Hover/focus styles for the logo */
+  .logo:hover, .logo:focus {
+    text-decoration: none; /* Remove underline */
+    outline: none;
+  }
+
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .desktop-nav a,
+  .desktop-nav button {
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+
+  .desktop-nav a:hover,
+  .desktop-nav a:focus,
+  .desktop-nav button:hover,
+  .desktop-nav button:focus {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-light);
+    outline: none;
+  }
+
+  button.contact-btn {
+    background: var(--accent-color);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(13, 71, 161, 0.7); /* Dark blue shadow for light mode */
+  }
+
+  button.contact-btn:hover,
+  button.contact-btn:focus {
+    background: #e67300;
+    box-shadow: 0 6px 15px rgba(13, 71, 161, 0.9); /* Darker blue shadow on hover for light mode */
+  }
+
+  body.dark button.contact-btn {
+    box-shadow: 0 4px 10px rgba(254, 93, 38, 0.7); /* Yellow shadow for dark mode */
+  }
+
+  body.dark button.contact-btn:hover,
+  body.dark button.contact-btn:focus {
+    box-shadow: 0 6px 15px rgba(230, 115, 0, 0.9); /* Darker yellow shadow on hover for dark mode */
+  }
+
+
+  button#dark-light-toggle {
+    border: none;
+    background: transparent;
+    font-size: 1.3rem;
+    color: var(--text-light);
+    cursor: pointer;
+    user-select: none;
+    padding: 0.2rem 0.6rem;
+    margin-left: 1rem;
+    transition: color var(--transition);
+  }
+  button#dark-light-toggle:hover, button#dark-light-toggle:focus {
+    color: var(--accent-color);
+    outline: none;
+  }
+
+  /* Hamburger Menu Icon */
+  .hamburger-menu {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1400;
+    position: relative; /* For animation */
+    width: 30px; /* Explicit width for consistent animation */
+    height: 30px; /* Explicit height */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .hamburger-menu span {
+    display: block;
+    width: 120%;
+    height: 2px; /* Adjusted from 1px to 2px for a slightly thicker appearance */
+    background-color: var(--text-light);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Hamburger to Close (X) animation */
+  .hamburger-menu.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-menu.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .hamburger-menu.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+
+  /* Mobile Menu Backdrop (full-screen overlay) */
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45); /* Darken effect */
+    backdrop-filter: blur(3px); /* Blur effect */
+    z-index: 1400; /* Above header, below mobile menu panel */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease; /* Smooth fade for blur/darken */
+    display: flex; /* To position the mobile-nav-overlay inside */
+    justify-content: flex-end; /* Align the sliding panel to the right */
+    align-items: flex-start; /* Align to top, or center if needed */
+  }
+
+  .mobile-menu-backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Mobile Navigation Overlay (Sliding Panel) */
+  .mobile-nav-overlay {
+    position: fixed; /* Keep fixed to position relative to viewport */
+    /* top and right will be set by JS dynamically */
+    width: 60vw;
+    max-width: 350px;
+    height: 100%; /* Take full height of the viewport */
+    background-color: var(--blue-medium);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 1450;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    border-radius: 20px 0 0 20px;
+
+    /* Initial state for "from icon" effect */
+    opacity: 0;
+    transform: scale(0.1); /* Start very small */
+    transform-origin: top right; /* Originates from top-right corner (where hamburger is) */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, top 0.3s ease-in-out, right 0.3s ease-in-out; /* Adjusted to 0.3s */
+  }
+
+  body.dark .mobile-nav-overlay {
+    background-color: var(--dark-bg-alt);
+  }
+
+  /* When backdrop is active, expand and fade the mobile-nav-overlay in */
+  .mobile-menu-backdrop.active .mobile-nav-overlay {
+    opacity: 1; /* Fade in */
+    transform: scale(1); /* Expand to full size */
+    top: 0 !important; /* Override JS set top/right for final position */
+    right: 0 !important; /* Override JS set top/right for final position */
+  }
+
+  .mobile-nav-overlay a,
+  .mobile-nav-overlay button { /* Apply styles to button too */
+    color: var(--text-light);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background: transparent; /* Ensure button background is transparent */
+    border: none; /* Ensure button border is none */
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mobile-nav-overlay a:hover,
+  .mobile-nav-overlay a:focus,
+  .mobile-nav-overlay button:hover,
+  .mobile-nav-overlay button:focus {
+    background-color: transparent;
+    color: var(--bg-light);
+    outline: none;
+  }
+
+  .mobile-nav-overlay .close-mobile-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--text-light); /* Keep color consistent with light mode header text */
+    cursor: pointer;
+    font-weight: 100; /* Made lighter for less bold appearance */
+    user-select: none;
+    /* Added transition for smooth rotation */
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 16000; /* Ensure it's on top */
+  }
+  .mobile-nav-overlay .close-mobile-menu:hover,
+  .mobile-nav-overlay .close-mobile-menu:focus {
+    color: var(--accent-color);
+    outline: none;
+  }
+
+  /* Keyframes for hero section shadow animation */
+  @keyframes hero-shadow-animation {
+    0% {
+      box-shadow: 0 15px 30px rgba(25, 118, 210, 0.6); /* Blueish shadow */
+    }
+    50% {
+      box-shadow: 0 15px 30px rgba(255, 180, 0, 0.6); /* Yellowish shadow */
+    }
+    100% {
+      box-shadow: 0 15px 30px rgba(25, 118, 210, 0.6); /* Back to blueish */
+    }
+  }
+
+  /* Keyframes for button shadow animation */
+  @keyframes button-shadow-animation {
+    0% {
+      box-shadow: 0 8px 25px rgba(25, 118, 210, 0.9); /* Blueish shadow */
+    }
+    50% {
+      box-shadow: 0 8px 25px rgba(230, 115, 0, 0.9); /* Darker Yellowish shadow */
+    }
+    100% {
+      box-shadow: 0 8px 25px rgba(25, 118, 210, 0.9); /* Back to blueish */
+    }
+  }
+
+  /* Hero Section */
+  section.hero {
+    text-align: center;
+    padding: 7rem 1.5rem 5rem;
+    background: linear-gradient(135deg, var(--blue-medium), var(--accent-color));
+    background-size: 200% 200%; /* Make gradient larger for animation */
+    animation: gradient-shift 15s ease infinite alternate, hero-shadow-animation 15s ease infinite alternate; /* Apply both animations */
+    color: var(--text-light);
+    border-radius: 0 0 60px 60px;
+    font-family: 'Inter', sans-serif;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  /* Keyframes for subtle gradient shift */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  section.hero.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    max-width: 750px;
+    margin: 0 auto 1rem;
+    line-height: 1.1;
+  }
+
+  section.hero p {
+    font-weight: 400;
+    font-size: 1.4rem;
+    max-width: 460px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  section.hero button.cta-btn {
+    background: var(--text-light);
+    color: var(--blue-medium);
+    padding: 1rem 3rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    animation: button-shadow-animation 15s ease infinite alternate; /* Apply button shadow animation */
+    transition: background var(--transition), transform 0.15s; /* Keep other transitions */
+  }
+
+  section.hero button.cta-btn:hover,
+  section.hero button.cta-btn:focus {
+    background: #fafafa;
+    /* The box-shadow will be handled by the animation, but we can add a subtle hover effect if desired */
+    outline: none;
+    transform: scale(1.06); /* Preserved from user's provided code */
+  }
+
+  section.hero button.cta-btn:active {
+    transform: scale(0.97);
+  }
+
+  section {
+    padding: 3rem 0 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+    /* Added scroll-margin-top to account for sticky header */
+    scroll-margin-top: 110px; /* Adjust this value if your header height changes */
+  }
+  /* Integrated from user's provided extra style block */
+  section.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  section h2.section-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--blue-medium);
+    position: relative;
+  }
+  section h2.section-title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 0.8rem auto 0;
+    border-radius: 12px;
+  }
+
+  section.about p {
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.13rem;
+    line-height: 1.62;
+    color: var(--blue-medium);
+  }
+
+  .courses-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.3rem;
+  }
+
+  .course-card {
+    background-color: var(--blue-light); /* Changed to lighter blue */
+    border-radius: 18px;
+    padding: 2.8rem 2.3rem;
+    box-shadow: 0 10px 28px rgba(254,93,38,0.15);
+    cursor: default;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Added transitions */
+    user-select: none;
+  }
+  body.dark .course-card {
+    background-color: var(--dark-bg-alt); /* Dark background for course cards */
+    color: var(--dark-text-light); /* Light text for course cards */
+  }
+  body.dark .course-card h3,
+  body.dark .course-card p {
+    color: var(--dark-text-light); /* Ensure text within card is light in dark mode */
+  }
+  .course-card:hover,
+  .course-card:focus-within {
+    box-shadow: 0 20px 45px rgba(254,93,38,0.3);
+    transform: translateY(-8px);
+    outline: none;
+  }
+  body.dark .course-card:hover,
+  body.dark .course-card:focus-within {
+    background: var(--accent-color); /* Highlight with accent color on hover in dark mode */
+    color: var(--text-light); /* Ensure text is light when hovered in dark mode */
+  }
+  body.dark .course-card:hover h3,
+  body.dark .course-card:hover p,
+  body.dark .course-card:focus-within h3,
+  body.dark .course-card:focus-within p {
+    color: var(--text-light); /* Ensure text within card is light when hovered in dark mode */
+  }
+
+  .course-card h3 {
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    color: var(--blue-dark);
+  }
+  .course-card p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--blue-dark);
+  }
+
+  section.testimonials {
+    background: var(--bg-light); /* Default light background */
+    padding: 5rem 1.5rem 6rem;
+    border-radius: 25px;
+    max-width: 1100px;
+    margin: 0 auto 6rem;
+    color: var(--text-dark); /* Default dark text */
+    box-shadow: 0 15px 40px rgba(254, 93, 38, 0.25);
+  }
+
+  body.dark section.testimonials {
+    background: var(--dark-bg); /* Changed to dark-bg for dark mode */
+    color: var(--dark-text-light); /* Light text for dark mode */
+  }
+
+  .testimonial-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.8rem;
+  }
+  .testimonial {
+    background: var(--blue-light); /* Changed to lighter blue */
+    border-radius: 18px;
+    padding: 2.5rem 3rem;
+    font-style: italic;
+    flex: 1 1 320px;
+    box-shadow: 0 10px 28px rgba(254, 93, 38, 0.15);
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease; /* Added color transition */
+  }
+
+  /* Testimonial hover in light mode: only transform and shadow, no color change */
+  .testimonial:hover,
+  .testimonial:focus {
+    transform: translateY(-6px);
+    cursor: default;
+    outline: none;
+  }
+
+  body.dark .testimonial {
+    background: var(--dark-bg-alt); /* Dark background for testimonial card in dark mode */
+    color: var(--dark-text-light); /* Light text for testimonial card in dark mode */
+  }
+  body.dark .testimonial:hover,
+  body.dark .testimonial:focus {
+    background: var(--accent-color); /* Highlight with accent color on hover in dark mode */
+    color: var(--text-light); /* Ensure text is light when hovered in dark mode */
+  }
+  .testimonial p {
+    margin-bottom: 1.7rem;
+  }
+  .student-name {
+    text-align: right;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  section.cta {
+    background-color: var(--accent-color);
+    padding: 5rem 2rem;
+    border-radius: 40px;
+    max-width: 850px;
+    margin: 0 auto 5rem;
+    text-align: center;
+    color: var(--text-light);
+  }
+
+  section.cta h2 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 3.2rem;
+    letter-spacing: 0.12em;
+  }
+
+  button.btn-cta {
+    background-color: #1a60cc; /* Lighter blue for the button */
+    border-radius: 100px;
+    padding: 1.5rem 4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    box-shadow: 0 14px 40px rgba(26, 96, 204, 0.9); /* Shadow matching lighter blue */
+    transition: background var(--transition), box-shadow var(--transition),transform 0.15s;
+  }
+
+  button.btn-cta:hover,
+  button.btn-cta:focus {
+    background: #1555b3; /* Slightly darker shade of the new lighter blue on hover */
+    box-shadow: 0 18px 50px rgba(26, 96, 204, 1); /* Adjusted shadow for hover state */
+    outline: none;
+    transform: scale(1.07);
+  }
+
+  button.btn-cta:active {
+    transform: scale(0.97);
+  }
+
+  footer.footer {
+    background-color: var(--bg-light);
+    border-top: 2px solid var(--blue-medium);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--blue-dark);
+    transition: background-color 0.5s, color 0.5s, border-color 0.5s; /* Added transitions */
+  }
+
+  body.dark footer.footer {
+    background-color: var(--dark-bg-alt); /* Dark background for footer */
+    color: var(--dark-text-light); /* Light text for footer */
+    border-color: var(--accent-color); /* Accent color border for dark mode */
+  }
+
+  footer.footer a {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 0 0.5rem;
+    transition: color var(--transition);
+    text-decoration: none;
+  }
+
+  footer.footer a:hover,
+  footer.footer a:focus {
+    color: var(--blue-dark);
+    outline: none;
+  }
+  body.dark footer.footer a {
+    color: var(--dark-text-muted); /* Darker accent for links in dark mode footer */
+  }
+  body.dark footer.footer a:hover,
+  body.dark footer.footer a:focus {
+    color: var(--accent-color); /* Highlight with accent color on hover in dark mode */
+  }
+
+  /* Style for the footer separators */
+  .footer-separator {
+    color: var(--blue-dark); /* Default blue for light mode */
+    margin: 0 0.2rem; /* Adjust spacing as needed */
+  }
+
+  body.dark .footer-separator {
+    color: var(--accent-color); /* Yellow for dark mode */
+  }
+
+  /* Contact Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    z-index: 15000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .contact-modal {
+    background-color: var(--bg-light); /* Default light background */
+    border-radius: 20px;
+    width: 400px;
+    max-width: 100%;
+    max-height: 80vh;
+    padding: 2.75rem 3rem 3rem;
+    box-shadow: 0 25px 50px rgba(13, 71, 161, 0.4); /* Dark blue shadow for light mode */
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    outline: none;
+    overflow-y: auto;
+    scrollbar-width: none; /* For Firefox */
+  }
+
+  .contact-modal::-webkit-scrollbar {
+    display: none; /* For WebKit browsers (Chrome, Safari, Edge) */
+  }
+
+  body.dark .contact-modal {
+    background-color: var(--dark-bg-alt); /* Dark background for dark mode */
+    color: var(--dark-text-light); /* Light text for dark mode */
+    box-shadow: 0 25px 50px rgba(255, 180, 0, 0.25); /* Original yellow shadow for dark mode */
+  }
+
+  .contact-modal h2 {
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .contact-modal form {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .contact-modal label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .contact-modal input,
+  .contact-modal textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border: 2px solid #f0e8df;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    box-shadow: inset 0 0 7px #f7f1e9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    color: var(--text-dark);
+    resize: none;
+    box-sizing: border-box; /* Added for consistent spacing */
+  }
+  body.dark .contact-modal input,
+  body.dark .contact-modal textarea {
+    background-color: var(--dark-bg); /* Dark background for inputs in dark mode */
+    border-color: var(--dark-text-muted); /* Adjust border color for dark mode */
+    color: var(--dark-text-light);
+    box-shadow: inset 0 0 7px rgba(255, 180, 0, 0.1); /* Subtle shadow for dark mode inputs */
+  }
+
+  .contact-modal input:focus,
+  .contact-modal textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 12px var(--accent-color);
+  }
+  .contact-modal textarea {
+    min-height: 100px;
+  }
+  .contact-modal button.submit-btn {
+    width: 100%;
+    background-color: var(--accent-color); /* Initial color: yellow */
+    border-radius: 50px;
+    padding: 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 180, 0, 0.7); /* Shadow matching yellow */
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.15s;
+    user-select: none;
+  }
+  .contact-modal button.submit-btn:hover,
+  .contact-modal button.submit-btn:focus {
+    background-color: #e67300; /* Slightly darker yellow on hover */
+    box-shadow: 0 14px 45px rgba(230, 115, 0, 0.9); /* Shadow matching darker yellow */
+    outline: none;
+    transform: scale(1.05);
+  }
+  .contact-modal button.submit-btn:active {
+    transform: scale(0.98);
+  }
+  .contact-modal .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--blue-dark);
+    cursor: pointer;
+    font-weight: 300; /* Made lighter for less bold appearance */
+    user-select: none;
+    /* Added transition for smooth rotation */
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 16000; /* Ensure it's on top */
+  }
+  body.dark .contact-modal .close-btn {
+    color: var(--dark-text-light); /* Initial color for close button in dark mode */
+  }
+  /* Hover/focus color and rotation for close button in both light and dark modes */
+  .contact-modal .close-btn:hover,
+  .contact-modal .close-btn:focus,
+  body.dark .contact-modal .close-btn:hover,
+  body.dark .contact-modal .close-btn:focus {
+    color: var(--accent-color); /* Change to accent-color (yellow) on hover/focus */
+    transform: rotate(90deg); /* Rotate by 90 degrees */
+    outline: none;
+  }
+
+  .form-message {
+    font-size: 1rem;
+    margin-top: 0.8rem; /* Adjusted margin-top to place it below the button */
+    margin-bottom: 1.3rem;
+    color: #b13610; /* Preserved for error messages */
+    font-weight: 600;
+    min-height: 1.5em;
+    text-align: center;
+  }
+  body.dark .form-message {
+    color: var(--accent-color); /* Adjust message color for dark mode */
+  }
+
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none; /* Hide desktop nav on mobile */
+    }
+
+    .hamburger-menu {
+      display: flex; /* Show hamburger on mobile */
+    }
+
+    header {
+      padding: 0.8rem 1.5rem; /* Adjust header padding for mobile */
+    }
+
+    section.hero h1 {
+      font-size: 2.6rem;
+    }
+    section.hero p {
+      font-size: 1.2rem;
+    }
+    .courses-grid {
+      grid-template-columns: 1fr;
+      padding: 0;
+      gap: 2rem;
+    }
+    section h2.section-title {
+      font-size: 2rem;
+    }
+    section.testimonials h2 {
+      font-size: 2.2rem;
+    }
+    section.cta h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    section.hero h1 {
+      font-size: 2.1rem;
+    }
+    section.hero p {
+      font-size: 1.0rem;
+    }
+    button.hero-btn,
+    button.btn-cta,
+    .contact-modal button.submit-btn {
+      font-size: 1.1rem;
+      padding: 0.9rem 2.7rem;
+    }
+    .contact-modal {
+      padding: 2rem 1.5rem;
+    }
+    .contact-modal h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <header aria-label="Primary navigation">
+    <!-- Changed from div to a tag for clickability -->
+    <a href="#hero" class="logo" tabindex="0" aria-label="Go to top of page" id="header-logo">THE LEARNING LOUNGE</a>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="desktop-nav">
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#packages" class="nav-link">Packages</a> <!-- New Packages Link -->
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <button id="dark-light-toggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">🌙</button>
+        <button class="contact-btn" id="open-contact-btn" aria-haspopup="dialog" aria-controls="contact-modal" aria-expanded="false" aria-label="Contact Us">Contact Us</button>
+      </div>
+    </nav>
+    <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Navigation Overlay (Backdrop) -->
+  <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true">
+    <!-- Mobile Navigation Overlay (Sliding Panel) -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="close-mobile-menu" id="close-mobile-menu" aria-label="Close navigation menu">&times;</button>
+      <a href="#about" class="mobile-nav-link">About Us</a>
+      <a href="#courses" class="mobile-nav-link">Courses</a>
+      <a href="#packages" class="mobile-nav-link">Packages</a> <!-- New Packages Link for Mobile -->
+      <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+      <button class="contact-btn mobile-nav-link" id="open-contact-btn-mobile" aria-haspopup="dialog" aria-controls="contact-modal" aria-expanded="false" aria-label="Contact Us">Contact Us</button>
+      <button id="dark-light-toggle-mobile" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">🌙</button>
+    </div>
+  </div>
+
+
+  <main>
+    <section class="hero" id="hero" aria-label="Welcome section" tabindex="0">
+      <h1>Master IELTS and Unlock Your Global Future</h1>
+      <p>Your dream of studying or working abroad is closer than ever. We help you get there with expert IELTS coaching and unmatched support.</p>
+      <button class="cta-btn hero-btn" id="hero-cta" aria-label="Get started with courses">Get Started</button>
+    </section>
+
+    <section class="about container" id="about" tabindex="0" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About The Learning Lounge</h2>
+      <p>
+        The Learning Lounge empowers students through personalized IELTS coaching, providing proven strategies and a supportive community. Our expert instructors tailor lessons to your needs, helping you gain confidence and excel in every IELTS section. Join us on your journey to study or work abroad.
+      </p>
+    </section>
+
+    <section class="courses container" id="courses" aria-label="Our IELTS courses">
+      <h2 class="section-title">Our Courses</h2>
+      <div class="courses-grid" role="list">
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>IELTS General Training</h3>
+          <p>Focused training for immigration and practical English.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>IELTS Academic</h3>
+          <p>Thorough academic preparation for university admissions.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>IELTS Speaking &amp; Writing</h3>
+          <p>Tailored coaching for communication success.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>IELTS Listening &amp; Reading</h3>
+          <p>Practice and skill development for test day success.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="packages container" id="packages" tabindex="0" aria-labelledby="packages-title">
+      <h2 class="section-title" id="packages-title">Our Packages</h2>
+      <p>
+        Explore our unique trip packages designed to combine learning with unforgettable experiences. Each package offers a blend of educational content and exciting activities.
+      </p>
+      <div class="courses-grid" role="list">
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>1 Day Package</h3>
+          <p>A concise, impactful day of intensive learning and skill-building.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>2 Days One Night Package</h3>
+          <p>An immersive experience combining extended learning with an overnight stay.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>Leadership Training</h3>
+          <p>Develop essential leadership skills through interactive workshops and challenges.</p>
+        </article>
+        <article class="course-card" role="listitem" tabindex="0">
+          <h3>Communication Skills</h3>
+          <p>Enhance your verbal and non-verbal communication for personal and professional growth.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonials container" id="testimonials" aria-label="Student testimonials" tabindex="0">
+      <h2 class="section-title">Testimonials</h2>
+      <div class="testimonial-list" role="list">
+        <blockquote class="testimonial" role="listitem" tabindex="0">
+          <p>“Thanks to The Learning Lounge, I scored 8.5 in IELTS and got into my dream university. Exceptional teachers!”</p>
+          <cite class="student-name">– Aisha K.</cite>
+        </blockquote>
+        <blockquote class="testimonial" role="listitem" tabindex="0">
+          <p>“Highly recommend! The resources and coaching gave me the confidence I needed to succeed.”</p>
+          <cite class="student-name">– Rajiv S.</cite>
+        </blockquote>
+        <blockquote class="testimonial" role="listitem" tabindex="0">
+          <p>“Flexible schedule and expert support helped me prepare for my IELTS during work hours.”</p>
+          <cite class="student-name">– Fatima M.</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="cta container" aria-label="Call to action" tabindex="0">
+      <h2>Ready to start your IELTS journey?</h2>
+      <button class="btn-cta" id="contact-cta-btn" aria-haspopup="dialog" aria-controls="contact-modal" aria-expanded="false">Contact Us</button>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo" aria-label="Footer">
+    <p>© 2025 The Learning Lounge. All rights reserved.</p>
+    <p>
+      <a href="mailto:info@thelearninglounge.com">info@thelearninglounge.com</a> <span class="footer-separator">&bull;</span>
+      <a href="https://www.facebook.com/TheLearningLounge" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a> <span class="footer-separator">&bull;</span>
+      <a href="https://twitter.com/LearningLounge" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a> <span class="footer-separator">&bull;</span>
+      <a href="https://instagram.com/TheLearningLounge" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+    </p>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-header" aria-modal="true" tabindex="-1">
+    <div class="contact-modal" role="document" tabindex="0">
+      <button class="close-btn" id="modal-close-btn" aria-label="Close contact form">&times;</button>
+      <h2 id="contact-modal-header">Contact Us</h2>
+      <form id="contact-form" novalidate>
+        <label for="contact-first-name">First Name</label>
+        <input type="text" id="contact-first-name" name="firstName" placeholder="First Name" required aria-required="true" />
+        <label for="contact-last-name">Last Name</label>
+        <input type="text" id="contact-last-name" name="lastName" placeholder="Last Name" required aria-required="true" />
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" name="email" placeholder="Your email address" required aria-required="true" />
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="5" placeholder="Your message" required aria-required="true"></textarea>
+        <button type="submit" class="submit-btn" aria-label="Send message">Send Message</button>
+        <p class="form-message" aria-live="polite" aria-atomic="true"></p>
+      </form>
+    </div>
+  </div>
+
+<script>
+  // Selectors for desktop navigation elements
+  const desktopNavContainer = document.querySelector('nav.navbar .desktop-nav'); // Select the container for desktop nav
+  const desktopNavLinks = document.querySelectorAll('.desktop-nav a.nav-link');
+  const desktopDarkLightToggle = document.getElementById('dark-light-toggle');
+  const desktopOpenContactBtn = document.getElementById('open-contact-btn');
+
+  // Selectors for mobile navigation elements
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a.mobile-nav-link');
+  const mobileDarkLightToggle = document.getElementById('dark-light-toggle-mobile');
+  const mobileOpenContactBtn = document.getElementById('open-contact-btn-mobile');
+
+  // Common elements
+  const headerLogo = document.getElementById('header-logo'); // Get the logo element by its new ID
+  const heroCtaBtn = document.getElementById('hero-cta');
+  const contactCtaBtn = document.getElementById('contact-cta-btn');
+  const contactModalOverlay = document.getElementById('contact-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const contactForm = document.getElementById('contact-form');
+  const formMessage = contactForm.querySelector('.form-message');
+  const submitButton = contactForm.querySelector('.submit-btn'); // Get a reference to the submit button
+  const body = document.body;
+
+  // Mobile Menu Specific Elements
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop'); // New selector for the full-screen backdrop
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay'); // This is now the sliding panel inside the backdrop
+  const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+
+
+  // Helper function to lock/unlock body scroll
+  function toggleBodyScroll(lock) {
+    if (lock) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Smooth scroll for navigation links
+  function setupSmoothScroll(links) {
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          // Calculate offset for sticky header
+          const headerOffset = document.querySelector('header').offsetHeight;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // Close mobile menu if open after clicking a link
+          if (mobileMenuBackdrop.classList.contains('active')) {
+            closeMobileMenu();
+          }
+        }
+      });
+    });
+  }
+  setupSmoothScroll(desktopNavLinks);
+  setupSmoothScroll(mobileNavLinks);
+
+  // Explicit smooth scroll for the header logo
+  if (headerLogo) {
+    headerLogo.addEventListener('click', e => {
+      e.preventDefault(); // Prevent default link behavior
+      const heroSectionElement = document.getElementById('hero'); // Renamed to avoid conflict with `heroSection` variable
+      if (heroSectionElement) {
+        heroSectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+
+  // Hero 'Get Started' button scrolls to courses
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener('click', () => {
+      const target = document.getElementById('courses');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // Dark/Light mode toggle functionality
+  function setDarkMode(isDark) {
+    if (isDark) {
+      body.classList.add('dark');
+      if (desktopDarkLightToggle) desktopDarkLightToggle.textContent = '☀️';
+      if (mobileDarkLightToggle) mobileDarkLightToggle.textContent = '☀️';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.remove('dark');
+      if (desktopDarkLightToggle) desktopDarkLightToggle.textContent = '🌙';
+      if (mobileDarkLightToggle) mobileDarkLightToggle.textContent = '🌙';
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  // Initialize mode from localStorage or prefer-color-scheme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    setDarkMode(true);
+  } else {
+    setDarkMode(false);
+  }
+
+  // Event listeners for dark/light mode toggles
+  if (desktopDarkLightToggle) {
+    desktopDarkLightToggle.addEventListener('click', () => {
+      setDarkMode(!body.classList.contains('dark'));
+    });
+  }
+  if (mobileDarkLightToggle) {
+    mobileDarkLightToggle.addEventListener('click', () => {
+      setDarkMode(!body.classList.contains('dark'));
+    });
+  }
+
+
+  // Open contact modal
+  function openModal() {
+    contactModalOverlay.classList.add('active');
+    contactModalOverlay.setAttribute('aria-hidden', 'false');
+    setTimeout(() => document.getElementById('contact-first-name').focus(), 200);
+    toggleBodyScroll(true); // Lock scroll
+    // Close mobile menu if open when modal is opened
+    if (mobileMenuBackdrop.classList.contains('active')) { // Check backdrop
+      closeMobileMenu();
+    }
+  }
+
+  // Event listeners for contact buttons
+  if (desktopOpenContactBtn) {
+    desktopOpenContactBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  if (contactCtaBtn) {
+    contactCtaBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+  if (mobileOpenContactBtn) {
+    mobileOpenContactBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+
+  // Close contact modal
+  function closeModal() {
+    contactModalOverlay.classList.remove('active');
+    contactModalOverlay.setAttribute('aria-hidden', 'true');
+    contactForm.reset();
+    formMessage.textContent = '';
+    // Reset button color to initial yellow when modal is closed
+    submitButton.style.backgroundColor = 'var(--accent-color)';
+    submitButton.style.boxShadow = '0 10px 30px rgba(255, 180, 0, 0.7)';
+    toggleBodyScroll(false); // Unlock scroll
+  }
+
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalCloseBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+  }
+
+  if (contactModalOverlay) {
+    contactModalOverlay.addEventListener('click', e => {
+      if (e.target === contactModalOverlay) closeModal();
+    });
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && contactModalOverlay.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Form validation & submission simulation
+  const emailRegex = /^[^\s@]+@(gmail\.com|outlook\.com)$/i;
+  if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const firstName = contactForm.firstName.value.trim();
+      const lastName = contactForm.lastName.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+
+      if (!firstName || !lastName || !email || !message) {
+        formMessage.style.color = '#d93025';
+        formMessage.textContent = 'Please fill out all fields.';
+        submitButton.style.backgroundColor = 'var(--accent-color)';
+        submitButton.style.boxShadow = '0 10px 30px rgba(255, 180, 0, 0.7)';
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        formMessage.style.color = '#d93025';
+        formMessage.textContent = 'Please enter a valid email address.';
+        submitButton.style.backgroundColor = 'var(--accent-color)';
+        submitButton.style.boxShadow = '0 10px 30px rgba(255, 180, 0, 0.7)';
+        return;
+      }
+      formMessage.style.color = 'var(--blue-dark)';
+      if (body.classList.contains('dark')) {
+        formMessage.style.color = 'var(--accent-color)';
+      }
+      formMessage.textContent = `Thank you, ${firstName}! Your message has been received.`;
+      
+      submitButton.style.backgroundColor = 'var(--blue-dark)';
+      submitButton.style.boxShadow = '0 10px 30px rgba(13, 71, 161, 0.7)';
+
+      contactForm.reset();
+    });
+  }
+
+  // Intersection Observer fade in animations
+  const faders = document.querySelectorAll('section:not(.resources), .testimonial');
+  const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      appearOnScroll.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+
+  // Mobile Menu Logic
+  function openMobileMenu() {
+    const hamRect = hamburgerMenu.getBoundingClientRect();
+
+    // Set initial position of mobileNavOverlay to match hamburger icon
+    // We want the top-right corner of the menu to align with the top-right of the hamburger.
+    // So, 'right' needs to be calculated from the right edge of the viewport.
+    mobileNavOverlay.style.top = `${hamRect.top}px`;
+    mobileNavOverlay.style.right = `${window.innerWidth - hamRect.right}px`;
+
+    mobileMenuBackdrop.classList.add('active'); // Activate backdrop
+    mobileMenuBackdrop.setAttribute('aria-hidden', 'false');
+    hamburgerMenu.classList.add('open');
+    toggleBodyScroll(true);
+
+    // Ensure the mobile dark/light toggle symbol is correct when opening the menu
+    setDarkMode(body.classList.contains('dark'));
+  }
+
+  function closeMobileMenu() {
+    // When closing, we just remove the 'active' class.
+    // The CSS transitions will handle the retraction back to the dynamically set initial position
+    // (which is the hamburger icon's last known position) and then scale down/fade out.
+    mobileMenuBackdrop.classList.remove('active'); // Deactivate backdrop
+    mobileMenuBackdrop.setAttribute('aria-hidden', 'true');
+    hamburgerMenu.classList.remove('open');
+    toggleBodyScroll(false);
+  }
+
+  if (hamburgerMenu) {
+    hamburgerMenu.addEventListener('click', openMobileMenu);
+  }
+
+  if (closeMobileMenuBtn) {
+    closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+  }
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenuBackdrop.classList.contains('active')) { // Check backdrop
+      closeMobileMenu(); // Close mobile menu if open
+    }
+  });
+</script>
+</body>
+</html>
