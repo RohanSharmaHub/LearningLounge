@@ -1232,42 +1232,7 @@
     }
   });
 
-  // Form validation & submission simulation
-  const emailRegex = /^[^\s@]+@(gmail\.com|outlook\.com)$/i;
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const firstName = contactForm.firstName.value.trim();
-      const lastName = contactForm.lastName.value.trim();
-      const email = contactForm.email.value.trim();
-      const message = contactForm.message.value.trim();
 
-      if (!firstName || !lastName || !email || !message) {
-        formMessage.style.color = '#d93025';
-        formMessage.textContent = 'Please fill out all fields.';
-        submitButton.style.backgroundColor = 'var(--accent-color)';
-        submitButton.style.boxShadow = '0 10px 30px rgba(255, 180, 0, 0.7)';
-        return;
-      }
-      if (!emailRegex.test(email)) {
-        formMessage.style.color = '#d93025';
-        formMessage.textContent = 'Please enter a valid email address.';
-        submitButton.style.backgroundColor = 'var(--accent-color)';
-        submitButton.style.boxShadow = '0 10px 30px rgba(255, 180, 0, 0.7)';
-        return;
-      }
-      formMessage.style.color = 'var(--blue-dark)';
-      if (body.classList.contains('dark')) {
-        formMessage.style.color = 'var(--accent-color)';
-      }
-      formMessage.textContent = `Thank you, ${firstName}! Your message has been received.`;
-      
-      submitButton.style.backgroundColor = 'var(--blue-dark)';
-      submitButton.style.boxShadow = '0 10px 30px rgba(13, 71, 161, 0.7)';
-
-      contactForm.reset();
-    });
-  }
 
   // Intersection Observer fade in animations
   const faders = document.querySelectorAll('section:not(.resources), .testimonial');
@@ -1332,5 +1297,11 @@
     }
   });
 </script>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- Your Email integration JS -->
+<script src="email.js" defer></script>
+
 </body>
 </html>
